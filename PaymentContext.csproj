@@ -13,9 +13,4 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Payment.Shared\Payment.Shared.csproj" />
-    <ProjectReference Include="..\Payment.Domain\Payment.Domain.csproj" />
-  </ItemGroup>
-
 </Project>
