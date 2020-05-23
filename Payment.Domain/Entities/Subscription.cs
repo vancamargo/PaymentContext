@@ -2,6 +2,7 @@
 using Payment.Shared.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Payment.Domain.Entities
@@ -22,7 +23,7 @@ namespace Payment.Domain.Entities
         public DateTime LastUpdateDate { get;private set; }
         public DateTime? ExpireDate { get;private set; }
         public bool Active { get;private set; }
-        public IReadOnlyCollection<Payment> Payments { get; private set; }
+        public IReadOnlyCollection<Payment> Payments { get { return _payments.ToArray(); } }
 
         public void AddPayment(Payment payment)
         {
