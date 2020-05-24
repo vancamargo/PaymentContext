@@ -43,28 +43,30 @@ namespace Payment.Domain.Handler
                 AddNotification("Document", "Este e-mail já esta em uso");
 
             //gerar as vo
-             var name = new Name(command.FirstName, "Wayne");
-             var document = new Document(command.Document, EDocumentType.CPF);
-             var email = new Email(command.Email);
-             var adress = new Adress(command.Street, command.Number, command.Neighborhood, command.City, command.Neighborhood, command.Country, command.ZipCode);
+            // Gerar os VOs
+            var name = new Name(command.FirstName, command.LastName);
+            var document = new Document(command.Document, EDocumentType.CPF);
+            var email = new Email(command.Email);
+            var address = new Address(command.Street, command.Number, command.Neighborhood, command.City, command.State, command.Country, command.ZipCode);
 
-            //gerar as entidades
-
+            // Gerar as Entidades
             var student = new Student(name, document, email);
             var subscription = new Subscription(DateTime.Now.AddMonths(1));
-            var payment = new BoletoPayment(command.Barcode,
+            var payment = new BoletoPayment(
+                command.BarCode,
                 command.BoletoNumber,
                 command.PaidDate,
                 command.ExpireDate,
-                command.Total, 
+                command.Total,
                 command.TotalPaid,
                 command.Payer,
-                (command.PayerDocument,
-                command.PayerDocumentType), adress, email
-                );
+                new Document(command.PayerDocument, command.PayerDocumentType),
+                address,
+                email
+            );
             subscription.AddPayment(payment);
             student.AddSubscription(subscription);
-            AddNotifications(name, document, email, adress, student, payment);
+            AddNotifications(name, document, email, address, student, payment);
 
             _repository.CreateSubscriptions(student);
 
@@ -76,7 +78,7 @@ namespace Payment.Domain.Handler
             //Aplicar as Validações 
 
             //Enviar e-mail de boas vindas
-            _emailService.Send(student.Name.FirstName, student.Email.Adress, "bem vindo", "sua assinatura foi criada");
+            _emailService.Send(student.Name.FirstName, student.Email.Adress, "bem ", "dfdfdf");
 
             return new CommandResult(true, "assinatura realizadada com sucesso");
         }

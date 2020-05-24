@@ -27,7 +27,7 @@ namespace Payment.Domain.Entities
         public Name Name { get; set; }
         public Document Document { get; private set; }
         public Email Email { get; private set; }
-        public Adress Address { get; private set; }
+        public Address Address { get; private set; }
         public IReadOnlyCollection<Subscription> Subscriptions { get { return _subscriptions.ToArray(); } }
 
         public void AddSubscription(Subscription subscription)
@@ -47,10 +47,10 @@ namespace Payment.Domain.Entities
                 .AreEquals(0, subscription.Payments.Count, "Student.Subscription.Payments", "Esta assinatura nao possui pagamento")
                 ) ;
 
-            //if (hasSubscritionActive)
-            //    AddNotification("Student.Subscritions", "Você já tem uma assinatura ativa");
+            if (hasSubscritionActive)
+                AddNotification("Student.Subscritions", "Você já tem uma assinatura ativa");
         }
-      
+
 
 
     }

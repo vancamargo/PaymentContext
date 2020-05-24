@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Payment.Domain.ValuesObjects
 {
-    public class Adress : ValueObject
+    public class Address : ValueObject
     {
-        public Adress(string street, string number, string neighborhood, string city, 
+        public Address(string street, string number, string neighborhood, string city, 
             string state, string country, string zipCode)
         {
             Street = street;

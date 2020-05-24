@@ -13,7 +13,7 @@ namespace Payment.Tests
         private readonly Subscription _subscription;
         private readonly Name _name;
         private readonly Document _document;
-        private readonly Adress _adress;
+        private readonly Address _adress;
         private readonly Email _email;
 
 
@@ -23,7 +23,7 @@ namespace Payment.Tests
             _name = new Name("Bruce", "Wayne");
             _document = new Document("35111507795", EDocumentType.CPF);
             _email = new Email("barney@gmail.com");
-            _adress = new Adress("rua 1", "1234", "Bairro legal", "Gothan", "Sp", "br", "13400000");
+            _adress = new Address("rua 1", "1234", "Bairro legal", "Gothan", "Sp", "br", "13400000");
             _student = new Student(_name, _document, _email);
             _subscription = new Subscription(null);
           
